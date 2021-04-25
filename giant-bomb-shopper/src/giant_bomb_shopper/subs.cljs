@@ -2,12 +2,20 @@
   (:require
    [re-frame.core :as re-frame]))
 
+
 (re-frame/reg-sub
  ::name
  (fn [db]
-   (:name db)))
+   (-> db :name)))
+
 
 (re-frame/reg-sub
-  ::something
-  (fn [db]
-    (:something db)))
+ ::aisle-items
+ (fn [db]
+   (-> db :aisle :items)))
+
+
+(re-frame/reg-sub
+ ::checkout-item
+ (fn [db]
+   (-> db :checkout :current)))
