@@ -1,25 +1,17 @@
 # Gravie Software Engineer Challenge
 
+## Developer
+
+Justin Grahn 2021.04.25
+
 ## Instructions
-After completing the challenge below, please send us an email with the location of your repository. If your repository is private, be sure to add us as collaborators so we can view your code.
 
-### Time Box
-3-4 Hours
+To run the Giant Bomb Shopper SPA, you'll need to perform some initial steps to ensure that everything is working.
 
-## Synopsis
+1. In the source folder of Giant Bomb Shopper, copy the __props-template.cljs__ file into a new file called __props.cljs__. Where you see `"{YOUR API KEY}"`, replace the text with the API key for your user/application. This file is in the .gitignore file on purpose -- your API key should never be added to your repo!
 
-For this challenge you will implement the Giant Bomb API to create an application that will allow a user to search games and "rent" them. The application should consist of at least two unique pages (`search` and `checkout`). Your view should display the game thumbnail and title, and the rest is up to you. You can use any language and or framework you'd like.
+2. From a command prompt, navigate to the `/giant-bomb-proxy` folder and run `npm run start`. This will start a proxy service on port `:9001` to enable your outbound calls to the Giant Bomb API.
 
-![Giant Bomb](https://upload.wikimedia.org/wikipedia/en/4/4b/Giant_Bomb_logo.png)
+3. From a second command prompt, navigate to the `/giant-bomb-shopper` folder and run `npx shadow-cljs watch app`. This will run your app server on the `:8280` port in `watch` mode, which allows you to make hot-swappable changes to your UI.
 
-You can get started by signing up for an API key [here](https://www.giantbomb.com/api/).
-
-### Resources
-
-You can find the quickstart guide [here](https://www.giantbomb.com/forums/api-developers-3017/quick-start-guide-to-using-the-api-1427959/).
-
-You can find a full list of API features [here](https://www.giantbomb.com/api/documentation).
-
-### Questions
-
-Don't hesitate to reach out with any questions. Remember we are more focused on seeing your development process than checking off a list of requirements, so be sure you are able to speak to your code and your thoughts behind it.
+If you've done everything correctly, you should now be able to use the app at [http://localhost:8280/#](http://localhost:8280/#)
