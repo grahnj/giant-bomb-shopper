@@ -34,6 +34,12 @@
 
 
 (re-frame/reg-sub
+  ::search-failure?
+  (fn [db]
+    (-> db :search :failure?)))
+
+
+(re-frame/reg-sub
  ::rentals
  (fn [db]
    (-> db :rentals)))

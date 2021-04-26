@@ -45,7 +45,7 @@
   (let [now       (:db ce)
         id        (-> now :checkout :current :id)
         now-clear (:db (clear-checkout {:db now} nil))]
-    {:db (assoc-in now-clear [:rentals] {id true})}))
+    {:db (assoc-in now-clear [:rentals id] true)}))
 
 
 (defn return-item
@@ -83,9 +83,17 @@
         (update-search [nil nil])
         (:db)
         (assoc-in [:search] {:searching? false})
+        (assoc-in [:search] {:failure? false})
         (assoc-in [:aisle] {:items (-> payload :results)}))})
 
 
+(defn search-failure
+  [ce [_ payload]]
+  {:db (->
+        ce
+        (:db)
+        (assoc-in [:search] {:searching? false})
+        (assoc-in [:search] {:failure? true}))})
 
 ;; db
 (re-frame/reg-event-db
@@ -128,3 +136,8 @@
 (re-frame/reg-event-fx
  :search-success
  search-success)
+
+
+ (re-frame/reg-event-fx
+  :search-failure
+  search-failure)

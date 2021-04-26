@@ -93,11 +93,20 @@
     (title-card item ["Finish Rental" rent-item] ["Cancel" clear-rental])]])
 
 
+(defn error-message
+  "A message to let the user know that a failure has occurred"
+  []
+  [:section.hero.is-danger
+        [:div.hero-body
+         [:p.title "Oops"]
+         [:p.subtitle "Something went wrong with your request."]]])
+
+
 (defn main-panel []
   (let [items       (re-frame/subscribe [::subs/aisle-items])
         to-checkout (re-frame/subscribe [::subs/checkout-item])
         search-text (re-frame/subscribe [::subs/search-text])
-        search-page (re-frame/subscribe [::subs/search-page])
+        failure?    (re-frame/subscribe [::subs/search-failure?])
         rentals     (re-frame/subscribe [::subs/rentals])]
     [:div
      [:p (pr-str @rentals)]
@@ -108,6 +117,8 @@
         [:h1.title
          "Find Games to Rent"]
         (search-control @search-text)]
+        (when @failure?
+          (error-message))
        (title-card-list @items @rentals)
        [:section.hero.is-warning
         [:div.hero-body
