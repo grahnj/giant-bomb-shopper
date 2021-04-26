@@ -19,3 +19,21 @@
  ::checkout-item
  (fn [db]
    (-> db :checkout :current)))
+
+
+(re-frame/reg-sub
+ ::search-text
+ (fn [db]
+   (-> db :search :text)))
+
+
+(re-frame/reg-sub
+ ::search-page
+ (fn [db]
+   (-> db :search :page)))
+
+
+(re-frame/reg-sub
+ ::rentals
+ (fn [db]
+   (-> db :rentals)))

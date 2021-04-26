@@ -1,2 +1,3 @@
-giant-bomb-shopper/secret.properties
-giant-bomb-shopper/node_modules
+giant-bomb-shopper/props.edn
+**node_modules
+**props.cljs
