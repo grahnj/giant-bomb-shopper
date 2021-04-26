@@ -109,7 +109,6 @@
         failure?    (re-frame/subscribe [::subs/search-failure?])
         rentals     (re-frame/subscribe [::subs/rentals])]
     [:div
-     [:p (pr-str @rentals)]
      [:div.columns
       [:div.column.is-one-quarter]
       [:div.column.is-one-half
